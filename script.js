@@ -19,12 +19,16 @@ function drawMatrix() {
     ctx.fillStyle = '#00FF00';
 
     for (let i = 0; i < letters.length; i++) {
+        let xOffset = i * 26;
+        if (letters[i] === "I") {
+            xOffset += 5;  // Dodajemy dodatkowy odstęp dla litery "I"
+        }
+
         if (drops[i] < (canvas.height / 4) && drops[i] >= 0) {
-            const text = letters[i];
-            ctx.fillText(text, i * 26, drops[i]);
+            ctx.fillText(letters[i], xOffset, drops[i]);
             drops[i] += dropSpeeds[i];
         } else if (drops[i] >= (canvas.height / 4) && drops[i] !== -1) {
-            ctx.fillText(letters[i], i * 26, canvas.height / 4);
+            ctx.fillText(letters[i], xOffset, canvas.height / 4);
         }
     }
 
@@ -32,7 +36,7 @@ function drawMatrix() {
     for (let i = 0; i < letters.length; i++) {
         if (drops[i] === -1 && (i === 0 || drops[i - 1] > 75)) {
             drops[i] = 0;
-            dropSpeeds[i] = Math.random() * 5 + 5; 
+            dropSpeeds[i] = Math.random() * 5 + 5;
             break;
         }
     }
@@ -53,3 +57,4 @@ function drawMatrix() {
 }
 
 setInterval(drawMatrix, 50);  // 20 frames per second
+
