@@ -20,9 +20,8 @@ function drawMatrix() {
 
     for (let i = 0; i < letters.length; i++) {
         let xOffset = i * 26;
-
         if (letters[i] === "I") {
-            xOffset += 10;  // Zwiększyłem odstęp dla litery "I" do 10, ale możesz dostosować tę wartość
+            xOffset += 5;  // Dodajemy dodatkowy odstęp dla litery "I"
         }
 
         if (drops[i] < (canvas.height / 4) && drops[i] >= 0) {
@@ -58,5 +57,4 @@ function drawMatrix() {
 }
 
 setInterval(drawMatrix, 50);  // 20 frames per second
-
 
