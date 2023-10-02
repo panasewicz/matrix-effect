@@ -21,7 +21,7 @@ function drawMatrix() {
     for (let i = 0; i < letters.length; i++) {
         let xOffset = i * 26;
         if (letters[i] === "I") {
-            xOffset += 8;  // Dodajemy dodatkowy odstęp dla litery "I"
+            xOffset += 15;  // Dodajemy dodatkowy odstęp dla litery "I"
         }
 
         if (drops[i] < (canvas.height / 4) && drops[i] >= 0) {
