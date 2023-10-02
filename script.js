@@ -12,23 +12,30 @@ let displayTime = 0;
 
 ctx.font = '26px "Courier New bold"';
 
+let positions = [];  // Start Position for each letter
+let totalWidth = 0;
+letters.forEach(letter => {
+    let width = ctx.measureText(letter).width;
+    positions.push(totalWidth);
+    totalWidth += width;
+});
+
+// Word Centre
+const startX = (canvas.width - totalWidth) / 2;
+
 function drawMatrix() {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     ctx.fillStyle = '#00FF00';
 
     for (let i = 0; i < letters.length; i++) {
-        let xOffset = i * 26;
-        if (letters[i] === "I") {
-            xOffset += 8;  // Dodajemy dodatkowy odstęp dla litery "I"
-        }
+        const xPosition = startX + positions[i];
 
         if (drops[i] < (canvas.height / 4) && drops[i] >= 0) {
-            ctx.fillText(letters[i], xOffset, drops[i]);
+            ctx.fillText(letters[i], xPosition, drops[i]);
             drops[i] += dropSpeeds[i];
         } else if (drops[i] >= (canvas.height / 4) && drops[i] !== -1) {
-            ctx.fillText(letters[i], xOffset, canvas.height / 4);
+            ctx.fillText(letters[i], xPosition, canvas.height / 4);
         }
     }
 
@@ -57,4 +64,3 @@ function drawMatrix() {
 }
 
 setInterval(drawMatrix, 50);  // 20 frames per second
-
