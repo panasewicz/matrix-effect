@@ -18,13 +18,11 @@ function drawMatrix() {
 
     ctx.fillStyle = '#00FF00';
 
-    let additionalOffset = 0;
-
     for (let i = 0; i < letters.length; i++) {
-        let xOffset = i * 26 + additionalOffset;
+        let xOffset = i * 26;
 
         if (letters[i] === "I") {
-            additionalOffset += 5;  // Dodajemy dodatkowy odstęp dla litery "I" i dla wszystkich kolejnych liter
+            xOffset += 10;  // Zwiększyłem odstęp dla litery "I" do 10, ale możesz dostosować tę wartość
         }
 
         if (drops[i] < (canvas.height / 4) && drops[i] >= 0) {
